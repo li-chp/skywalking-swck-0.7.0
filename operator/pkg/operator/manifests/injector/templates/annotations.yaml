@@ -1,0 +1,106 @@
+# Licensed to Apache Software Foundation (ASF) under one or more contributor
+# license agreements. See the NOTICE file distributed with
+# this work for additional information regarding copyright
+# ownership. Apache Software Foundation (ASF) licenses this file to you under
+# the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# name means the reference to configuration used in pod's annotations.
+# defaultValue is the default value in agent.config
+# vaildateFunc means use which function to validate the value
+# Notice , the vaildateFunc must exist in validate.go , 
+# if don't have the vaildateFunc , please set nil
+# envName is the environment variable in agent.config
+
+annotations:
+  # Next is the annotation of the sidecar configuration
+  - name: sidecar.skywalking.apache.org/initcontainer.Name
+    defaultValue: inject-skywalking-agent
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/initcontainer.Image
+    defaultValue: apache/skywalking-java-agent:8.10.0-java8
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/initcontainer.Command
+    defaultValue: sh
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/initcontainer.args.Option
+    defaultValue: -c
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/initcontainer.args.Command
+    defaultValue: "mkdir -p /sky/agent && cp -r /skywalking/agent/* /sky/agent"
+    validateFunc: nil
+    envName: nil
+  
+  - name: sidecar.skywalking.apache.org/initcontainer.resources.limits
+    defaultValue: nil
+    validateFunc: ValidateResourceRequirements
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/initcontainer.resources.requests
+    defaultValue: nil
+    validateFunc: ValidateResourceRequirements
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/sidecarVolume.Name
+    defaultValue: sky-agent
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/sidecarVolumeMount.MountPath
+    defaultValue: /sky/agent
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/configmapVolume.ConfigMap.Name
+    defaultValue:
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/configmapVolume.Name
+    defaultValue:
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/configmapVolumeMount.MountPath
+    defaultValue:
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/env.Name
+    defaultValue: JAVA_TOOL_OPTIONS
+    validateFunc: nil
+    envName: nil
+
+  - name: sidecar.skywalking.apache.org/env.Value
+    defaultValue: -javaagent:/sky/agent/skywalking-agent.jar
+    validateFunc: nil
+    envName: nil
+
+  # Next is the annotation of the java agent configuration
+  - name: agent.skywalking.apache.org/agent.service_name
+    defaultValue: Your_ApplicationName
+    validateFunc: ValidateServiceName
+    envName: SW_AGENT_NAME
+
+  - name: agent.skywalking.apache.org/collector.backend_service
+    defaultValue: 127.0.0.1:11800
+    validateFunc: ValidateBackendServices
+    envName: SW_AGENT_COLLECTOR_BACKEND_SERVICES
