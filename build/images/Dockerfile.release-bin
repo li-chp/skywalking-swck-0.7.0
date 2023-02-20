@@ -17,5 +17,6 @@ FROM gcr.io/distroless/static:nonroot
 COPY --chown=65532:65532 bin/manager-linux-amd64 /manager
 COPY --chown=65532:65532 bin/adapter-linux-amd64 /adapter
 USER 65532:65532
+WORKDIR /
 
 ENTRYPOINT ["/manager"]
