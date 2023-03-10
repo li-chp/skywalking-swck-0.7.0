@@ -34,7 +34,7 @@ import (
 
 const (
 	// the label means whether to enbale injection , "true" or "false".
-	ActiveInjectorLabel = "swck-java-agent-injected"
+	ActiveInjectorLabel = "etck-java-agent-injected"
 	// SidecarInjectSucceedAnno represents injection succeed
 	SidecarInjectSucceedAnno = "sidecar.skywalking.apache.org/succeed"
 	// the annotation means which container to inject
@@ -161,16 +161,16 @@ func (s *SidecarInjectField) Inject(pod *corev1.Pod) {
 func (s *SidecarInjectField) GetInjectStrategy(a Annotations, labels,
 	annotation *map[string]string) {
 	// set default value
-	s.NeedInject = false
+	//s.NeedInject = false
 
 	// set NeedInject's value , if the pod has the label "swck-java-agent-injected=true", means need inject
-	if *labels == nil {
-		return
-	}
+	//if *labels == nil {
+	//	return
+	//}
 
-	if strings.EqualFold((*labels)[ActiveInjectorLabel], "true") {
-		s.NeedInject = true
-	}
+	//if strings.EqualFold((*labels)[ActiveInjectorLabel], "true") {
+	s.NeedInject = true
+	//}
 
 	if *annotation == nil {
 		return

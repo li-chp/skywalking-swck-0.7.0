@@ -20,7 +20,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: java-agent-configmap  #the name will add a namePrefix "skywalking-swck-" finally
-  namespace: skywalking-swck-system
+  namespace: etck-system
 data:
   agent.config: |
     # The service name in UI

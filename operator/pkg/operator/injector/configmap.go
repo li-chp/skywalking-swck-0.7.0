@@ -25,9 +25,9 @@ import (
 
 const (
 	// DefaultConfigmapNamespace is the system namespace
-	DefaultConfigmapNamespace = "skywalking-swck-system"
+	DefaultConfigmapNamespace = "etck-system"
 	// DefaultConfigmapName is the default configmap's name
-	DefaultConfigmapName = "skywalking-swck-java-agent-configmap"
+	DefaultConfigmapName = "etck-java-agent-configmap"
 	// DefaultConfigmapKey is the key of default configmap
 	DefaultConfigmapKey = "agent.config"
 )

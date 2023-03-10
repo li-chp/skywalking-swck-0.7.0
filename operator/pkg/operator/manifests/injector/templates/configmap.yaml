@@ -18,8 +18,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: skywalking-swck-java-agent-configmap 
-  namespace: skywalking-swck-system
+  name: etck-java-agent-configmap
+  namespace: etck-system
 data:
   agent.config: |
     {{- $anno := getAgentAnnotations }}

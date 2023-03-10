@@ -53,7 +53,7 @@ type SwAgentSpec struct {
 type JavaSidecar struct {
 	// Name is the name for initContainer.
 	// +optional
-	Name string `json:"name,omitempty" default:"inject-skywalking-agent"`
+	Name string `json:"name,omitempty" default:"inject-etck-agent"`
 
 	// Image is the image for initContainer, which commonly contains SkyWalking java agent SDK.
 	// +optional
@@ -93,7 +93,7 @@ type SwConfigMap struct {
 	// The name pf configmap used in the injected container as agent.config
 	Name string `json:"name,omitempty" default:"java-agent-configmap-volume"`
 	// The name of configmap volume.
-	ConfigMapName string `json:"configMapName,omitempty" default:"skywalking-swck-java-agent-configmap"`
+	ConfigMapName string `json:"configMapName,omitempty" default:"etck-java-agent-configmap"`
 	// Mount path of the configmap in the injected container
 	ConfigMapMountFile string `json:"configMapMountFile,omitempty" default:"agent.config"`
 }

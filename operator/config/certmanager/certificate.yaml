@@ -39,4 +39,4 @@ spec:
   issuerRef:
     kind: Issuer
     name: selfsigned-issuer
-  secretName: skywalking-swck-controller-manager-cert # this secret will not be prefixed, since it's not managed by kustomize
+  secretName: etck-controller-manager-cert # this secret will not be prefixed, since it's not managed by kustomize

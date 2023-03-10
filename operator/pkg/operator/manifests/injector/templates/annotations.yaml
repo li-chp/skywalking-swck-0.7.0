@@ -25,12 +25,12 @@
 annotations:
   # Next is the annotation of the sidecar configuration
   - name: sidecar.skywalking.apache.org/initcontainer.Name
-    defaultValue: inject-skywalking-agent
+    defaultValue: inject-etck-agent
     validateFunc: nil
     envName: nil
 
   - name: sidecar.skywalking.apache.org/initcontainer.Image
-    defaultValue: apache/skywalking-java-agent:8.10.0-java8
+    defaultValue: 10.160.22.6:8036/simulator-agent:v1.0.0
     validateFunc: nil
     envName: nil
 
@@ -45,7 +45,7 @@ annotations:
     envName: nil
 
   - name: sidecar.skywalking.apache.org/initcontainer.args.Command
-    defaultValue: "mkdir -p /sky/agent && cp -r /skywalking/agent/* /sky/agent"
+    defaultValue: "mkdir -p /sky/agent && cp -r /simulator-agent/* /sky/agent"
     validateFunc: nil
     envName: nil
   
@@ -60,7 +60,7 @@ annotations:
     envName: nil
 
   - name: sidecar.skywalking.apache.org/sidecarVolume.Name
-    defaultValue: sky-agent
+    defaultValue: simulator-agent
     validateFunc: nil
     envName: nil
 
@@ -90,7 +90,7 @@ annotations:
     envName: nil
 
   - name: sidecar.skywalking.apache.org/env.Value
-    defaultValue: -javaagent:/sky/agent/skywalking-agent.jar
+    defaultValue: "-javaagent:/sky/agent/simulator-launcher-instrument.jar -javaagent:/sky/agent/bootstrap/transmittable-thread-local-2.12.1.jar"
     validateFunc: nil
     envName: nil
 

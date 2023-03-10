@@ -2,7 +2,7 @@ domain: skywalking.apache.org
 layout:
 - go.kubebuilder.io/v3
 multigroup: true
-projectName: skywalking-swck
+projectName: etck
 repo: github.com/apache/skywalking-swck/operator
 resources:
 - api:

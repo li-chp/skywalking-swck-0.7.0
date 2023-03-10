@@ -37,5 +37,5 @@ spec:
       - name: cert
         secret:
           defaultMode: 420
-          secretName: skywalking-swck-controller-manager-cert
+          secretName: etck-controller-manager-cert
 

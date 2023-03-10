@@ -21,7 +21,7 @@ SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BUILDDIR=${SCRIPTDIR}/..
 ROOTDIR=${BUILDDIR}/..
 
-RELEASE_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+RELEASE_TAG=v1.0.0
 RELEASE_VERSION=${RELEASE_TAG#"v"}
 
 binary(){
@@ -40,24 +40,24 @@ binary(){
     # Docker
     cp -Rfv ${ROOTDIR}/build/images/Dockerfile.release-bin ${bindir}/Dockerfile
     echo -e "build:" > ${bindir}/Makefile
-    echo -e "\tdocker build . -t apache/skywalking-swck:${RELEASE_TAG}" >> ${bindir}/Makefile
+    echo -e "\tdocker build . -t 10.160.22.6:8036/etck:${RELEASE_TAG}" >> ${bindir}/Makefile
     # Generates CRDs and deployment manifests
     pushd ${ROOTDIR}/operator/config/manager
-    kustomize edit set image controller=apache/skywalking-swck:${RELEASE_TAG}
+    kustomize edit set image controller=10.160.22.6:8036/etck:${RELEASE_TAG}
     popd
     kustomize build operator/config/default > ${bindir}/config/operator-bundle.yaml
     pushd ${ROOTDIR}/adapter/config/namespaced/adapter
-    kustomize edit set image metrics-adapter=apache/skywalking-swck:${RELEASE_TAG}
+    kustomize edit set image metrics-adapter=10.160.22.6:8036/etck:${RELEASE_TAG}
     popd
     kustomize build adapter/config > ${bindir}/config/adapter-bundle.yaml
     # Package
-    tar -czf ${BUILDDIR}/release/skywalking-swck-${RELEASE_VERSION}-bin.tgz -C ${bindir} .
+    tar -czf ${BUILDDIR}/release/etck-${RELEASE_VERSION}-bin.tgz -C ${bindir} .
     rm -rf ${bindir}
 }
 
 source(){
     # Package
-    rm -rf ${BUILDDIR}/release/skywalking-swck-${RELEASE_VERSION}-src.tgz
+    rm -rf ${BUILDDIR}/release/etck-${RELEASE_VERSION}-src.tgz
     pushd ${ROOTDIR}
     tar \
         --exclude=".DS_Store" \

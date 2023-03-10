@@ -72,7 +72,7 @@ func (r *SwAgent) ValidateDelete() error {
 }
 
 const (
-	LabelJavaAgent = "swck-java-agent-injected"
+	LabelJavaAgent = "etck-java-agent-injected"
 )
 
 func (r *SwAgent) setDefault() {
@@ -89,7 +89,7 @@ func (r *SwAgent) setDefault() {
 
 		// default values for java sidecar
 		if len(r.Spec.JavaSidecar.Name) == 0 {
-			r.Spec.JavaSidecar.Name = "inject-skywalking-agent"
+			r.Spec.JavaSidecar.Name = "inject-etck-agent"
 		}
 		if len(r.Spec.JavaSidecar.Image) == 0 {
 			r.Spec.JavaSidecar.Image = "apache/skywalking-java-agent:8.8.0-java8"

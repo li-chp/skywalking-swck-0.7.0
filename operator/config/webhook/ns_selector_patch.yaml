@@ -28,4 +28,4 @@ webhooks:
   name: mpod.kb.io
   namespaceSelector:
     matchLabels:
-      swck-injection: enabled
+      etck-injection: enabled
